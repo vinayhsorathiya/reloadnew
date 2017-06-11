@@ -1,0 +1,365 @@
+
+<!doctype html>
+<html>
+<head>
+<script>
+
+function requestFullScreen(sw) {
+jsclick(sw);
+}
+
+
+function init()
+{
+						
+							//alert("init");
+						var s1=document.getElementById("checkbox1");
+						var s2=document.getElementById("checkbox2");
+						var s3=document.getElementById("checkbox3");
+						var s4=document.getElementById("checkbox4");
+						var s5=document.getElementById("checkbox5");
+						var s6=document.getElementById("checkbox6");
+						var s7=document.getElementById("checkbox7");
+						var s8=document.getElementById("checkbox8");
+			
+						var xmlhttp = new XMLHttpRequest();
+						var url="http://192.168.4.1/status";
+						xmlhttp.timeout = 500;
+						xmlhttp.open("GET",url, true);
+						xmlhttp.onreadystatechange = function() 
+						 { 
+							if(this.readyState =4 && this.status == 200) {
+							console.log(this.responseText);
+								s1.checked=Boolean(Number(this.responseText.charAt(0)));
+								s2.checked=Boolean(Number(this.responseText.charAt(1)));
+								s3.checked=Boolean(Number(this.responseText.charAt(2)));
+								s4.checked=Boolean(Number(this.responseText.charAt(3)));
+								s5.checked=Boolean(Number(this.responseText.charAt(4)));
+								s6.checked=Boolean(Number(this.responseText.charAt(5)));
+								s7.checked=Boolean(Number(this.responseText.charAt(6)));
+								s8.checked=Boolean(Number(this.responseText.charAt(7)));
+
+							}
+  						}
+						xmlhttp.send();
+}
+function jsclick(sw)
+{
+						var total=0;
+						var xmlhttp = new XMLHttpRequest();
+						var status=Number(sw.checked);
+						//alert(status);
+						var url="http://192.168.4.1/local?cmd="+sw.name+status;
+						xmlhttp.timeout = 500;
+						xmlhttp.open("GET",url, true);
+						xmlhttp.onerror = function() { sw.checked=!sw.checked; };
+						xmlhttp.onreadystatechange = function() 
+						 { 
+							total+=this.readyState;
+							//console.log(this.readyState);
+							console.log(total);
+							if(this.readyState =4 && this.status == 200) {
+								//console.log(this.responseText);
+							}
+  						}
+						
+						xmlhttp.send();
+						xmlhttp.ontimeout=function(){sw.checked=!sw.checked;}
+						
+}
+</script>
+<meta charset="utf-8">
+<title>Pure CSS/CSS3 iOS Switches</title>
+<style>
+*,:before,:after{
+box-sizing:border-box;
+margin:0;
+padding:0;
+/*transition*/
+-webkit-transition:.25s ease-in-out;
+   -moz-transition:.25s ease-in-out;
+     -o-transition:.25s ease-in-out;
+        transition:.25s ease-in-out;
+outline:none;
+font-family:Helvetica Neue,helvetica,arial,verdana,sans-serif;
+}
+body{
+background:#f1f1f1;
+}
+h1{
+margin:150px auto 0 auto;
+text-align:center;
+font-weight:200;
+color:#4b4b4b;
+font-size:70px;
+}
+#toggles{
+	zoom:300%;
+width:60px;
+margin:50px auto;
+text-align:center;
+}
+.ios-toggle,.ios-toggle:active{
+position:absolute;
+top:-5000px;
+height:0;
+width:0;
+opacity:0;
+border:none;
+outline:none;
+}
+.checkbox-label{
+display:block;
+position:relative;
+padding:10px;
+margin-bottom:20px;
+font-size:12px;
+line-height:16px;
+width:100%;
+height:36px;
+/*border-radius*/
+-webkit-border-radius:18px;
+   -moz-border-radius:18px;
+        border-radius:18px;
+background:#f8f8f8;
+cursor:pointer;
+}
+.checkbox-label:before{
+content:'';
+display:block;
+position:absolute;
+z-index:1;
+line-height:34px;
+text-indent:40px;
+height:36px;
+width:36px;
+/*border-radius*/
+-webkit-border-radius:100%;
+   -moz-border-radius:100%;
+        border-radius:100%;
+top:0px;
+left:0px;
+right:auto;
+background:white;
+/*box-shadow*/
+-webkit-box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
+   -moz-box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
+        box-shadow:0 3px 3px rgba(0,0,0,.2),0 0 0 2px #dddddd;
+}
+.checkbox-label:after{
+content:attr(data-off);
+display:block;
+position:absolute;
+z-index:0;
+top:0;
+left:-300px;
+padding:10px;
+height:100%;
+width:300px;
+text-align:right;
+color:#bfbfbf;
+white-space:nowrap;
+}
+.ios-toggle:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+   -moz-box-shadow:inset 0 0 0 20px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+        box-shadow:inset 0 0 0 20px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+}
+.ios-toggle:checked + .checkbox-label:before{
+left:calc(100% - 36px);
+/*box-shadow*/
+-webkit-box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+   -moz-box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+        box-shadow:0 0 0 2px transparent,0 3px 3px rgba(0,0,0,.3);
+}
+.ios-toggle:checked + .checkbox-label:after{
+content:attr(data-on);
+left:60px;
+width:36px;
+}
+/* GREEN CHECKBOX */
+
+#checkbox1 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+}
+#checkbox1:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+   -moz-box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+        box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+}
+#checkbox1:checked + .checkbox-label:after{
+color:rgba(19,191,17,1);
+}
+/* RED CHECKBOX */
+
+#checkbox2 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px #f35f42,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #f35f42,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #f35f42,0 0 0 2px #dddddd;
+}
+#checkbox2:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px #f35f42,0 0 0 2px #f35f42;
+   -moz-box-shadow:inset 0 0 0 20px #f35f42,0 0 0 2px #f35f42;
+        box-shadow:inset 0 0 0 20px #f35f42,0 0 0 2px #f35f42;
+}
+#checkbox2:checked + .checkbox-label:after{
+color:#f35f42;
+}
+/* BLUE CHECKBOX */
+
+#checkbox3 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px #1fc1c8,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #1fc1c8,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #1fc1c8,0 0 0 2px #dddddd;
+}
+#checkbox3:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px #1fc1c8,0 0 0 2px #1fc1c8;
+   -moz-box-shadow:inset 0 0 0 20px #1fc1c8,0 0 0 2px #1fc1c8;
+        box-shadow:inset 0 0 0 20px #1fc1c8,0 0 0 2px #1fc1c8;
+}
+#checkbox3:checked + .checkbox-label:after{
+color:#1fc1c8;
+}
+
+/*yellow check box*/
+#checkbox4 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px #bb7cef,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #bb7cef,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #bb7cef,0 0 0 2px #dddddd;
+}
+#checkbox4:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px #bb7cef,0 0 0 2px #bb7cef;
+   -moz-box-shadow:inset 0 0 0 20px #bb7cef,0 0 0 2px #bb7cef;
+        box-shadow:inset 0 0 0 20px #bb7cef,0 0 0 2px #bb7cef;
+}
+#checkbox4:checked + .checkbox-label:after{
+color:#bb7cef;
+}
+
+#checkbox5 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px rgba(19,191,17,1),0 0 0 2px #dddddd;
+}
+#checkbox5:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+   -moz-box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+        box-shadow:inset 0 0 0 18px rgba(19,191,17,1),0 0 0 2px rgba(19,191,17,1);
+}
+#checkbox5:checked + .checkbox-label:after{
+color:rgba(19,191,17,1);
+}
+/* RED CHECKBOX */
+
+#checkbox6 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px #f35f42,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #f35f42,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #f35f42,0 0 0 2px #dddddd;
+}
+#checkbox6:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px #f35f42,0 0 0 2px #f35f42;
+   -moz-box-shadow:inset 0 0 0 20px #f35f42,0 0 0 2px #f35f42;
+        box-shadow:inset 0 0 0 20px #f35f42,0 0 0 2px #f35f42;
+}
+#checkbox6:checked + .checkbox-label:after{
+color:#f35f42;
+}
+/* BLUE CHECKBOX */
+
+#checkbox7 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px #1fc1c8,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #1fc1c8,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #1fc1c8,0 0 0 2px #dddddd;
+}
+#checkbox7:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px #1fc1c8,0 0 0 2px #1fc1c8;
+   -moz-box-shadow:inset 0 0 0 20px #1fc1c8,0 0 0 2px #1fc1c8;
+        box-shadow:inset 0 0 0 20px #1fc1c8,0 0 0 2px #1fc1c8;
+}
+#checkbox7:checked + .checkbox-label:after{
+color:#1fc1c8;
+}
+
+/*yellow check box*/
+#checkbox8 + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 0px #bb7cef,0 0 0 2px #dddddd;
+   -moz-box-shadow:inset 0 0 0 0px #bb7cef,0 0 0 2px #dddddd;
+        box-shadow:inset 0 0 0 0px #bb7cef,0 0 0 2px #dddddd;
+}
+#checkbox8:checked + .checkbox-label{
+/*box-shadow*/
+-webkit-box-shadow:inset 0 0 0 20px #bb7cef,0 0 0 2px #bb7cef;
+   -moz-box-shadow:inset 0 0 0 20px #bb7cef,0 0 0 2px #bb7cef;
+        box-shadow:inset 0 0 0 20px #bb7cef,0 0 0 2px #bb7cef;
+}
+#checkbox8:checked + .checkbox-label:after{
+color:#bb7cef;
+}
+
+</style>
+</head>
+
+<body onload="init();">
+
+<h1>Smart Switches</h1>
+
+	<div class="row">
+	  <div class="col-sm-6">
+		<div id="toggles">
+			<input type="checkbox" name="1" onclick="requestFullScreen(this);" id="checkbox1" class="ios-toggle" />
+		  <label for="checkbox1" class="checkbox-label" data-off="Fan 1 off" data-on="Fan 1 on"></label>
+		  
+		  <input type="checkbox" name="2" onclick="requestFullScreen(this);" id="checkbox2" class="ios-toggle" />
+		  <label for="checkbox2" class="checkbox-label" data-off="Fan 2 off" data-on="Fan 2 on"></label>
+		  
+		  <input type="checkbox" name="3" onclick="requestFullScreen(this);" id="checkbox3" class="ios-toggle" />
+		  <label for="checkbox3" class="checkbox-label" data-off="Fan 3 off" data-on="Fan 3 on"></label>
+		  
+		  <input type="checkbox" name="4" onclick="requestFullScreen(this);" id="checkbox4" class="ios-toggle" />
+		  <label for="checkbox4" class="checkbox-label" data-off="Fan 4 off" data-on="Fan 4 on"></label>
+	
+	
+		</div>
+	  </div>
+	  <div class="col-sm-6">
+		<div id="toggles">
+				  
+		  <input type="checkbox" name="5" onclick="requestFullScreen(this);" id="checkbox5" class="ios-toggle" />
+		  <label for="checkbox5" class="checkbox-label" data-off="Fan 5 off" data-on="Fan 5 on"></label>
+		  
+		  <input type="checkbox" name="6" onclick="requestFullScreen(this);" id="checkbox6" class="ios-toggle" />
+		  <label for="checkbox6" class="checkbox-label" data-off="Fan 6 off" data-on="Fan 6 on"></label>
+		  
+		  <input type="checkbox" name="7" onclick="requestFullScreen(this);" id="checkbox7" class="ios-toggle" />
+		  <label for="checkbox7" class="checkbox-label" data-off="Fan 7 off" data-on="Fan 7 on"></label>
+		  
+		  <input type="checkbox" name="8" onclick="requestFullScreen(this);" id="checkbox8" class="ios-toggle" />
+		  <label for="checkbox8" class="checkbox-label" data-off="Fan 8 off" data-on="Fan 8 on"></label>
+
+		</div>
+	  </div>
+	</div>
+	
+<script>
+  
+</script>
+</body>
+</html>

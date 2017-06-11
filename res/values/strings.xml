@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FirstProject</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="stringfirst">First</string>
+    <string name="stringsecond">Second</string>
+    <string name="stringthird">Last</string>
+    <string name="title_activity_main2">Main2Activity</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#125688</color>
+    <color name="colorPrimaryDark">#125688</color>
+    <color name="textColorPrimary">#ffffff</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#c8e8ff</color>
+    <color name="colocrclick">#50125688</color>
+
+    <color name="action_bar">#ff0d0d0d</color>
+    <color name="white">#ffffffff</color>
+    <color name="off_white">#99ffffff</color>
+
+    <!-- Text sizes -->
+    <dimen name="text_size_small">14.0sp</dimen>
+    <dimen name="text_size_medium">16.0sp</dimen>
+
+    <!-- ActionBar color strip -->
+    <dimen name="colorstrip">5dp</dimen>
+</resources>
